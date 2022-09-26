@@ -1,77 +1,77 @@
 ﻿// *****
-// Elementos constituintes basicos da ECL
-// Uma definicao
-//Mydef := 'Olá mundo';  // definicao do tipo "value"
+// Basic ECL
+// A definition
+Mydef := 'Hello World';  // "value" definition
 
-// Uma acao
-// OUTPUT('Olá mundo');
-//OUTPUT(mydef);
-
-// *****
-// Estruturas de dados basicas em ECL
-// Estrutura RECORD
-
-rec := RECORD
-  STRING10  Firstname;
-	STRING    Lastname;
-	STRING1   Gender;
-	UNSIGNED1 Age;
-	INTEGER   Balance;
-	DECIMAL7_2 Income;
-END;
-
-// Declaracao DATASET
-ds := DATASET([{'Alysson','Oliveira','M',26,100,1000.50},
-               {'Bruno','Camargo','',22,-100,500.00},
-							 {'Elaine','Silva','F',19,-50,750.60},
-							 {'Julia','Caetano','F',45,500,5000},
-							 {'Odair','Ferreira','M',66,350,6000},
-							 {'Orlando','Silva','U',67,300,4000}],rec);
-OUTPUT(ds);
+// An action
+OUTPUT('Hello World');
+OUTPUT(mydef);
 
 // *****
-// Filtragem e tabulaçao de datasets
+// Basic data structures in ECL
+// RECORD Structure
+
+// rec := RECORD
+  // STRING10  Firstname;
+	// STRING    Lastname;
+	// STRING1   Gender;
+	// UNSIGNED1 Age;
+	// INTEGER   Balance;
+	// DECIMAL7_2 Income;
+// END;
+
+// DATASET Declaration
+// ds := DATASET([{'Alysson','Oliveira','M',26,100,1000.50},
+               // {'Bruno','Camargo','',22,-100,500.00},
+							 // {'Elaine','Silva','F',19,-50,750.60},
+							 // {'Julia','Caetano','F',45,500,5000},
+							 // {'Odair','Ferreira','M',66,350,6000},
+							 // {'Orlando','Silva','U',67,300,4000}],rec);
+// OUTPUT(ds);
+
+// *****
+// Filtering and aggregating datasets
 // recset := ds(Age<65);
-// recset; //Equivale a: OUTPUT(recset);
+// recset; //Equivalent to: OUTPUT(recset);
 
 // recset := ds(Age<65,Gender='M');
 // recset;
 
-// IsSeniorMale := ds.Age<65 AND ds.Gender='M'; //definição do tipo "boolean"
+// IsSeniorMale := ds.Age<65 AND ds.Gender='M'; // "boolean" definition
 // recset := ds(IsSeniorMale);
 // recset;
 
-// SetGender := ['M','F'];  //definicao do tipo "set"
+// SetGender := ['M','F'];  // "set" definition
 // recset := ds(Gender IN SetGender);   
-// recset;						// definição do tipo "recordset"
-// COUNT(recset);    //Equivale a: OUTPUT(COUNT(recset));
+// recset;						// "recordset" definition
+// COUNT(recset);    //Equivalent to: OUTPUT(COUNT(recset));
 
-rec2 := RECORD
-  ds.Gender;
-	cnt := COUNT(GROUP);
-END;
+// rec2 := RECORD
+  // ds.Gender;
+	// cnt := COUNT(GROUP);
+// END;
 
-crosstab := TABLE(ds,rec2,Gender);
-crosstab;
+// crosstab := TABLE(ds,rec2,Gender);
+// crosstab;
 
-avg := AVE(crosstab,cnt);
-avg;
+// avg := AVE(crosstab,cnt);
+// avg;
 
 // *****
-// Transformacoes basicas em ECL
-// Eliminacao de campos desnecessarios
+// Basic transformations
+// REmoving uneeded fields
 // tbl := TABLE(ds,{Firstname,LastName,Income});
 // tbl;
 
-// Ordenacao de valores
+// Ordering values
 // sortbl := SORT(tbl,LastName);
 // sortbl;
 
-// Remocao de duplicidades
+// Removing duplicate records
 // dedptbl := DEDUP(sortbl,LastName);
 // dedptbl;
 
-// Adicao de campo no dataset
+// Adding a new field
 /*rec2 := RECORD
   UNSIGNED   recid;  
 	STRING10   Firstname;
@@ -100,7 +100,7 @@ rec3 := RECORD
 	STRING    Email;
 END;
 */
-// Declaracao DATASET
+//  DATASET Declaration
 /*
 ds2 := DATASET([{'ALYSSON','OLIVEIRA','alysson.oliveira@gmail.com'},
                {'BRUNO','CAMARGO','bruno.camargo@gmail.com'},
